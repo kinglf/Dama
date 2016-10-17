@@ -21,7 +21,7 @@ public class HTHYGetCode {
         DLLPATH = HTHYCodeUtil.getDLLPATH();
         DLLPATH += "CaptchaOCR.dll";
         try {
-            netIndex = JPYZM.INSTANCE.VcodeInit("95426E83836FE9576B9566AE2144728F");//这个是DLL的初始化引擎密码 防止别人调用你的dll 妥善保存。
+            netIndex = JPYZM.INSTANCE.VcodeInit("T95426E83836FE9576B9566AE2144728TF");//这个是DLL的初始化引擎密码 防止别人调用你的dll 妥善保存。
         }
         catch (Exception e) {
             e.printStackTrace();
