@@ -14,9 +14,9 @@ import com.alibaba.fastjson.JSONObject;
 public class FileUtil {
 
     /** 
-     * ¶ÔÎÄ¼ş½øĞĞ±àÂë 
-     * @param file ĞèÒª±àÂëµÄÎÊ¼Ò 
-     * @return ¶ÔÎÄ¼ş½øĞĞbase64±àÂëºóµÄ×Ö·û´® 
+     * å¯¹æ–‡ä»¶è¿›è¡Œç¼–ç  
+     * @param file éœ€è¦ç¼–ç çš„é—®å®¶ 
+     * @return å¯¹æ–‡ä»¶è¿›è¡Œbase64ç¼–ç åçš„å­—ç¬¦ä¸² 
      * @throws Exception 
      */
     public static byte[] file2byte(File file) throws Exception {
@@ -48,15 +48,15 @@ public class FileUtil {
         System.out.println(str);
     }
 
-    //´òÂëÇëÇóIP
+    //æ‰“ç è¯·æ±‚IP
     public String browserip;
 
-    //µ±Ç°´òÂë·şÎñÆ÷¶Ë¿Ú
+    //å½“å‰æ‰“ç æœåŠ¡å™¨ç«¯å£
     public int serverport;
 
 
     private void mkdir(String path) {
-        File fileParentDir = new File(path);// ÅĞ¶ÏlogÄ¿Â¼ÊÇ·ñ´æÔÚ
+        File fileParentDir = new File(path);// åˆ¤æ–­logç›®å½•æ˜¯å¦å­˜åœ¨
         if (!fileParentDir.exists()) {
             fileParentDir.mkdirs();
 
@@ -65,21 +65,21 @@ public class FileUtil {
 
     public static byte[] hexToBytes(String hexString) {
         char[] hex = hexString.toCharArray();
-        // ×ªrawData³¤¶È¼õ°ë  
+        // è½¬rawDataé•¿åº¦å‡åŠ  
         int length = hex.length / 2;
         byte[] rawData = new byte[length];
         for (int i = 0; i < length; i++) {
-            // ÏÈ½«hex×ª10½øÎ»ÊıÖµ  
+            // å…ˆå°†hexè½¬10è¿›ä½æ•°å€¼  
             int high = Character.digit(hex[i * 2], 16);
             int low = Character.digit(hex[i * 2 + 1], 16);
-            // Œ¢µÚÒ»‚€ÖµµÄ¶şßMÎ»Öµ×óÆ½ÒÆ4Î»,ex: 00001000 => 10000000 (8=>128)  
-            // È»ºóÓëµÚ¶ş¸öÖµµÄ¶ş½øÎ»Öµ×÷Áª¼¯ex: 10000000 | 00001100 => 10001100 (137)  
+            // å°‡ç¬¬ä¸€å€‹å€¼çš„äºŒé€²ä½å€¼å·¦å¹³ç§»4ä½,ex: 00001000 => 10000000 (8=>128)  
+            // ç„¶åä¸ç¬¬äºŒä¸ªå€¼çš„äºŒè¿›ä½å€¼ä½œè”é›†ex: 10000000 | 00001100 => 10001100 (137)  
             int value = (high << 4) | low;
-            // ÓëFFFFFFFF×÷²¹¼¯  
+            // ä¸FFFFFFFFä½œè¡¥é›†  
             if (value > 127) {
                 value -= 256;
             }
-            // ×îºó×ª»Øbyte¾ÍOK  
+            // æœ€åè½¬å›byteå°±OK  
             rawData[i] = (byte) value;
         }
         return rawData;
@@ -88,13 +88,13 @@ public class FileUtil {
     public static final String bytesToHexString(byte[] buf) {
         StringBuilder sb = new StringBuilder(buf.length * 2);
         String tmp = "";
-        // ½«×Ö½ÚÊı×éÖĞÃ¿¸ö×Ö½Ú²ğ½â³É2Î»16½øÖÆÕûÊı  
+        // å°†å­—èŠ‚æ•°ç»„ä¸­æ¯ä¸ªå­—èŠ‚æ‹†è§£æˆ2ä½16è¿›åˆ¶æ•´æ•°  
         for (int i = 0; i < buf.length; i++) {
             // 1.  
             // sb.append(Integer.toHexString((buf[i] & 0xf0) >> 4));  
             // sb.append(Integer.toHexString((buf[i] & 0x0f) >> 0));  
             // //////////////////////////////////////////////////////////////////  
-            // 2.sodino¸üÏ²»¶µÄ·½Ê½£¬ºÙºÙ...  
+            // 2.sodinoæ›´å–œæ¬¢çš„æ–¹å¼ï¼Œå˜¿å˜¿...  
             tmp = Integer.toHexString(0xff & buf[i]);
             tmp = tmp.length() == 1 ? "0" + tmp : tmp;
             sb.append(tmp);
@@ -116,7 +116,7 @@ public class FileUtil {
     }
 
     /**
-     * ÕûÊıiĞ¡ÓÚ10ÔòÇ°Ãæ²¹0
+     * æ•´æ•°iå°äº10åˆ™å‰é¢è¡¥0
      * @param i
      * @return
      * @author tower
@@ -153,21 +153,21 @@ public class FileUtil {
     }
 
     /**
-     * ½á¹û´¦Àí
+     * ç»“æœå¤„ç†
      * @param result
      * @return
-     * @time 2015Äê1ÔÂ18ÈÕ ÏÂÎç3:56:41
+     * @time 2015å¹´1æœˆ18æ—¥ ä¸‹åˆ3:56:41
      * @author fiend
      */
     public static JSONObject resultHandling(String result) {
         JSONObject obj = new JSONObject();
-        if (!HTHYCodeUtil.isRealEnnull(result)) {//´òÂëÊ§°Ü
+        if (!HTHYCodeUtil.isRealEnnull(result)) {//æ‰“ç å¤±è´¥
             obj.put("errCode", "102");
             obj.put("ret", false);
-            obj.put("errMsg", "´òÂëÊ§°Ü");
+            obj.put("errMsg", "æ‰“ç å¤±è´¥");
             obj.put("coderesult", "");
         }
-        else {//´òÂë³É¹¦
+        else {//æ‰“ç æˆåŠŸ
             obj.put("errCode", "100");
             obj.put("ret", true);
             obj.put("errMsg", "");

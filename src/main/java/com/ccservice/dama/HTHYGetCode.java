@@ -17,11 +17,11 @@ public class HTHYGetCode {
     String dllpath;
 
     static {
-        //DLL ÍêÕûÂ·¾¶
+        //DLL å®Œæ•´è·¯å¾„
         DLLPATH = HTHYCodeUtil.getDLLPATH();
         DLLPATH += "CaptchaOCR.dll";
         try {
-            netIndex = JPYZM.INSTANCE.VcodeInit("T95426E83836FE9576B9566AE2144728TF");//Õâ¸öÊÇDLLµÄ³õÊ¼»¯ÒıÇæÃÜÂë ·ÀÖ¹±ğÈËµ÷ÓÃÄãµÄdll Í×ÉÆ±£´æ¡£
+            netIndex = JPYZM.INSTANCE.VcodeInit("95426E83836FE9576B9566AE2144728F");//è¿™ä¸ªæ˜¯DLLçš„åˆå§‹åŒ–å¼•æ“å¯†ç  é˜²æ­¢åˆ«äººè°ƒç”¨ä½ çš„dll å¦¥å–„ä¿å­˜ã€‚
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class HTHYGetCode {
         while (offset < buffer.length && (numRead = fi.read(buffer, offset, buffer.length - offset)) >= 0) {
             offset += numRead;
         }
-        // È·±£ËùÓĞÊı¾İ¾ù±»¶ÁÈ¡  
+        // ç¡®ä¿æ‰€æœ‰æ•°æ®å‡è¢«è¯»å–  
         if (offset != buffer.length) {
             throw new IOException("Could not completely read file " + file.getName());
         }
@@ -74,7 +74,7 @@ public class HTHYGetCode {
         while (offset < buffer.length && (numRead = fi.read(buffer, offset, buffer.length - offset)) >= 0) {
             offset += numRead;
         }
-        // È·±£ËùÓĞÊı¾İ¾ù±»¶ÁÈ¡  
+        // ç¡®ä¿æ‰€æœ‰æ•°æ®å‡è¢«è¯»å–  
         if (offset != buffer.length) {
             throw new IOException("Could not completely read file " + file.getName());
         }
@@ -84,7 +84,7 @@ public class HTHYGetCode {
 
     public static String[] getCode(byte[] imgbs) throws IOException {
         String[] resultary = { "0", "0", "0" };
-        byte[] code = new byte[20]; //ÕâÀï¸ø½ÓÊÕµÄÊ¶±ğ½á¹û ÉêÇëÏÂ½ÓÊÕµÄ¿Õ¼ä ±ØĞëÒªµÄ¡£
+        byte[] code = new byte[20]; //è¿™é‡Œç»™æ¥æ”¶çš„è¯†åˆ«ç»“æœ ç”³è¯·ä¸‹æ¥æ”¶çš„ç©ºé—´ å¿…é¡»è¦çš„ã€‚
         String rtnCode = null;
         boolean result = JPYZM.INSTANCE.GetVcode(netIndex, imgbs, imgbs.length, code);
         if (result) {
@@ -97,7 +97,7 @@ public class HTHYGetCode {
 
     public static String getCodeStr(byte[] imgbs) throws IOException {
         String[] resultary = { "0", "0", "0" };
-        byte[] code = new byte[20]; //ÕâÀï¸ø½ÓÊÕµÄÊ¶±ğ½á¹û ÉêÇëÏÂ½ÓÊÕµÄ¿Õ¼ä ±ØĞëÒªµÄ¡£
+        byte[] code = new byte[20]; //è¿™é‡Œç»™æ¥æ”¶çš„è¯†åˆ«ç»“æœ ç”³è¯·ä¸‹æ¥æ”¶çš„ç©ºé—´ å¿…é¡»è¦çš„ã€‚
         String rtnCode = null;
         boolean result = JPYZM.INSTANCE.GetVcode(netIndex, imgbs, imgbs.length, code);
         if (result) {
@@ -109,7 +109,7 @@ public class HTHYGetCode {
     }
 
     public static String getCode(byte[] imgbs, int type) throws IOException {
-        byte[] code = new byte[20]; //ÕâÀï¸ø½ÓÊÕµÄÊ¶±ğ½á¹û ÉêÇëÏÂ½ÓÊÕµÄ¿Õ¼ä ±ØĞëÒªµÄ¡£
+        byte[] code = new byte[20]; //è¿™é‡Œç»™æ¥æ”¶çš„è¯†åˆ«ç»“æœ ç”³è¯·ä¸‹æ¥æ”¶çš„ç©ºé—´ å¿…é¡»è¦çš„ã€‚
         String rtnCode = null;
         boolean result = JPYZM.INSTANCE.GetVcode(netIndex, imgbs, imgbs.length, code);
         if (result) {

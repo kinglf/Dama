@@ -15,10 +15,10 @@ import org.apache.commons.codec.binary.Base64;
 public class HTHYCodeUtil {
 
     /**
-     * ·Ç¿Õ  
+     * éç©º  
      * @param str
      * @return
-     * @time 2015Äê1ÔÂ18ÈÕ ÏÂÎç3:51:12
+     * @time 2015å¹´1æœˆ18æ—¥ ä¸‹åˆ3:51:12
      * @author fiend
      */
     public static boolean isRealEnnull(String str) {
@@ -37,9 +37,9 @@ public class HTHYCodeUtil {
     }
 
     /** 
-     * ¶ÔÎÄ¼ş½øĞĞ±àÂë 
-     * @param file ĞèÒª±àÂëµÄÎÊ¼Ò 
-     * @return ¶ÔÎÄ¼ş½øĞĞbase64±àÂëºóµÄ×Ö·û´® 
+     * å¯¹æ–‡ä»¶è¿›è¡Œç¼–ç  
+     * @param file éœ€è¦ç¼–ç çš„é—®å®¶ 
+     * @return å¯¹æ–‡ä»¶è¿›è¡Œbase64ç¼–ç åçš„å­—ç¬¦ä¸² 
      * @throws Exception 
      */
     public static String file2String(File file) throws Exception {
@@ -52,26 +52,26 @@ public class HTHYCodeUtil {
             sb.append(ch);
         }
         in.close();
-        //½«buffer×ª»¯Îªstring  
+        //å°†bufferè½¬åŒ–ä¸ºstring  
         String oldString = new String(sb);
 
-        //Ê¹ÓÃbase64±àÂë  
+        //ä½¿ç”¨base64ç¼–ç   
         String newString = compressData(oldString);
 
         return newString;
     }
 
     /** 
-     * ¶ÔÎÄ¼ş½øĞĞ½âÂë 
-     * @param oldString ĞèÒª½âÂëµÄ×Ö·û´® 
-     * @param filePath  ½«×Ö·û´®½âÂëµ½filepathÎÄ¼şÂ·¾¶ 
-     * @return  ·µ»Ø½âÂëºóµÃµ½µÄÎÄ¼ş 
+     * å¯¹æ–‡ä»¶è¿›è¡Œè§£ç  
+     * @param oldString éœ€è¦è§£ç çš„å­—ç¬¦ä¸² 
+     * @param filePath  å°†å­—ç¬¦ä¸²è§£ç åˆ°filepathæ–‡ä»¶è·¯å¾„ 
+     * @return  è¿”å›è§£ç åå¾—åˆ°çš„æ–‡ä»¶ 
      * @throws Exception 
      */
     public static File string2File(String oldString, String filePath) throws Exception {
         File file = new File(filePath);
         if (file.exists()) {
-            System.out.println("ÎÄ¼şÒÑ¾­´æÔÚ£¬²»ÄÜ½«base64±àÂë×ª»»ÎªÎÄ¼ş");
+            System.out.println("æ–‡ä»¶å·²ç»å­˜åœ¨ï¼Œä¸èƒ½å°†base64ç¼–ç è½¬æ¢ä¸ºæ–‡ä»¶");
             return null;
         }
         else {
@@ -79,10 +79,10 @@ public class HTHYCodeUtil {
         }
         FileOutputStream out = new FileOutputStream(file);
 
-        //¶ÔoldString½øĞĞ½âÂë  
+        //å¯¹oldStringè¿›è¡Œè§£ç   
         String newString = decompressData(oldString);
 
-        //½«ÎÊ¼şÄÚÈİ×ªÎªbyte[]  
+        //å°†é—®ä»¶å†…å®¹è½¬ä¸ºbyte[]  
         char[] str = newString.toCharArray();
         for (char ch : str) {
             byte b = (byte) ch;
@@ -93,22 +93,22 @@ public class HTHYCodeUtil {
     }
 
     /** 
-     * base64--->byte[] ½âÂë 
-     * @param oldString ĞèÒª½âÂëµÄ×Ö·û´® 
+     * base64--->byte[] è§£ç  
+     * @param oldString éœ€è¦è§£ç çš„å­—ç¬¦ä¸² 
      * @return  byte[] 
      * @throws Exception 
      */
     public static byte[] base64tobyte(String oldString) throws Exception {
-        //¶ÔoldString½øĞĞ½âÂë  
+        //å¯¹oldStringè¿›è¡Œè§£ç   
         String newString = decompressData(oldString);
         byte[] bt = newString.getBytes("UTF-8");
         return bt;
     }
 
     /** 
-     * Ê¹ÓÃbase64±àÂë×Ö·û´® 
+     * ä½¿ç”¨base64ç¼–ç å­—ç¬¦ä¸² 
      * @param data 
-     * @return ±àÂëºóµÄ×Ö·û´® 
+     * @return ç¼–ç åçš„å­—ç¬¦ä¸² 
      */
     public static String compressData(String data) {
         try {
@@ -125,9 +125,9 @@ public class HTHYCodeUtil {
     }
 
     /** 
-     * Ê¹ÓÃbase64½âÂë×Ö·û´® 
+     * ä½¿ç”¨base64è§£ç å­—ç¬¦ä¸² 
      * @param encdata 
-     * @return ½âÂëºóµÄ×Ö·û´® 
+     * @return è§£ç åçš„å­—ç¬¦ä¸² 
      */
     public static String decompressData(String encdata) {
         try {
@@ -144,7 +144,7 @@ public class HTHYCodeUtil {
     }
 
     /** 
-     * µ÷ÓÃapacheµÄ±àÂë·½·¨ 
+     * è°ƒç”¨apacheçš„ç¼–ç æ–¹æ³• 
      */
     public static String getenBASE64inCodec(byte[] b) {
         if (b == null)
@@ -153,7 +153,7 @@ public class HTHYCodeUtil {
     }
 
     /** 
-     * µ÷ÓÃapacheµÄ½âÂë·½·¨ 
+     * è°ƒç”¨apacheçš„è§£ç æ–¹æ³• 
      * @throws UnsupportedEncodingException 
      */
     public static byte[] getdeBASE64inCodec(String s) throws UnsupportedEncodingException {
@@ -167,7 +167,7 @@ public class HTHYCodeUtil {
      * @param inStream
      * @return
      * @throws IOException
-     * @time 2015Äê1ÔÂ23ÈÕ ÏÂÎç3:35:27
+     * @time 2015å¹´1æœˆ23æ—¥ ä¸‹åˆ3:35:27
      * @author fiend
      */
     public static byte[] input2byte(InputStream inStream) throws IOException {
@@ -184,7 +184,7 @@ public class HTHYCodeUtil {
     public static File byte2File(byte[] bytes, String filePath) throws Exception {
         File file = new File(filePath);
         if (file.exists()) {
-            System.out.println("ÎÄ¼şÒÑ¾­´æÔÚ");
+            System.out.println("æ–‡ä»¶å·²ç»å­˜åœ¨");
             return null;
         }
         else {
