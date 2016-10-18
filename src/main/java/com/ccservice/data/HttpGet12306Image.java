@@ -23,33 +23,47 @@ public class HttpGet12306Image {
 	public static void main(String[] args) {
 		
 		for (int i = 0; i < 10000; i++) {
-			try {
-				String cookies =get12306cookie();
-				String imageUrl =downloadimgbyhttpclient(cookies);
-				byte[] byte1=FileUtil.file2byte(new File(imageUrl));
-				String rand_code = HTHYGetCode.getCode(byte1, 1);
-				boolean isTrue =codeIsRight(rand_code, cookies);
-				System.out.println("验证码："+rand_code+"--->isTrue:"+isTrue);
-				if(isTrue){
-					i++;
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			
+			
 		}
-		System.out.println(i);
 	}
 
 	private static String verificationUrl_other = "https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=other&rand=sjrand&";
 	
-	
 	final private static String DEFAULT__PICTURE_DIRPATH = "D:/12306img/";
 
+	private static String QueryUrl ="https://kyfw.12306.cn/otn/leftTicketPrice/query?leftTicketDTO.train_date=2016-10-18&leftTicketDTO.from_station=GZQ&leftTicketDTO.to_station=BJP&leftTicketDTO.ticket_type=1&randCode=";
 	
 	
-	private static String downloadimgbyhttpclient(String cookiestring) {
+	
+	
+	
+	public static String queryPrice(String randcode,String cookie){
+		String res = "-1";
+		CCSHttpClientnew httpClient = new CCSHttpClientnew(false, 10000l);
+		CCSGetMethod get = new CCSGetMethod(QueryUrl+randcode);
+		get.addRequestHeader("Cookie", cookie);
+		httpClient.getParams().setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
+		httpClient.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, "utf-8");
+		Protocol myhttps = new Protocol("https", new MySSLProtocolSocketFactory(), 443);
+		Protocol.registerProtocol("https", myhttps);
+		get.setFollowRedirects(false);
+		try {
+			httpClient.executeMethod(get);
+			res = get.getResponseBodyAsString();
+		} catch (HttpException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+		
+		
+	}
+	
+	
+	public static String downloadimgbyhttpclient(String cookiestring) {
 		String picturepath = "-1";
 		try {
 			CCSHttpClientnew httpClient = new CCSHttpClientnew(false, 10000L);
@@ -86,12 +100,11 @@ public class HttpGet12306Image {
 		}
 		return picturepath;
 	}
-	
 	/**
 	 * 获取12306的cookie 
 	 * @return
 	 */
-	private static String get12306cookie() {
+	public static String get12306cookie() {
 		String cookie = "-1";
 		try {
 			CCSGetMethod get = null;
@@ -135,7 +148,7 @@ public class HttpGet12306Image {
 		String resultStr = RequestUtil.post(
 				"https://kyfw.12306.cn/otn/passcodeNew/checkRandCodeAnsyn?randCode=" + rand_code + "&rand=sjrand", "",
 				"", header, 0);
-		System.out.println("验证码的结果：" + resultStr);
+//		System.out.println("验证码的结果：" + resultStr);
 		if (resultStr.contains("1")) {
 			result = true;
 		}
