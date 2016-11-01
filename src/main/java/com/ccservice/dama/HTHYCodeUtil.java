@@ -167,8 +167,6 @@ public class HTHYCodeUtil {
      * @param inStream
      * @return
      * @throws IOException
-     * @time 2015年1月23日 下午3:35:27
-     * @author fiend
      */
     public static byte[] input2byte(InputStream inStream) throws IOException {
         ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
@@ -180,6 +178,8 @@ public class HTHYCodeUtil {
         byte[] in2b = swapStream.toByteArray();
         return in2b;
     }
+    
+    
 
     public static File byte2File(byte[] bytes, String filePath) throws Exception {
         File file = new File(filePath);

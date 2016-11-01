@@ -14,17 +14,25 @@ import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.lang.ArrayUtils;
 
 import com.ccservice.dama.FileUtil;
-import com.ccservice.dama.HTHYGetCode;
 
 public class HttpGet12306Image {
 
 	static int i =0 ;
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws Exception {
 		for (int i = 0; i < 10000; i++) {
-			
-			
+			long t1 = System.currentTimeMillis();
+			String cookies =get12306cookie();
+			String picturepath = downloadimgbyhttpclient(cookies);
+			long t2 = System.currentTimeMillis();
+			File oldFile = new File(picturepath);
+			byte[] bytes =FileUtil.file2byte(oldFile);
+			String rand_code = SendPostandGet.submitPostDama("http://114.55.250.140:9016/Dama/HthyCodeServlet", bytes);
+			long t3 = System.currentTimeMillis();
+			boolean isRight = codeIsRight(rand_code, cookies);
+			long t4 = System.currentTimeMillis();
+			System.out.println("获取验证码："+(t2-t1)+"打码："+(t3-t2)+"验证："+(t4-t3));
+			System.out.println(rand_code+isRight);
 		}
 	}
 
